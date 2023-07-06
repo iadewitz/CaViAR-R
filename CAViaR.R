@@ -7,7 +7,7 @@ sourceCpp('AdaptiveLoop.cpp')
 sourceCpp('InGARCHLoop.cpp')
 sourceCpp('QRObj.cpp')
 
-
+# Main function
 CAViaR <- function(y,
                    model,
                    alpha,
