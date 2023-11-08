@@ -1,3 +1,5 @@
+setwd(dirname(rstudioapi::getSourceEditorContext()$path)) # Script location as wd
+
 library(RcppArmadillo)
 library(Rcpp)
 library(numDeriv)
@@ -8,9 +10,9 @@ sourceCpp('InGARCHLoop.cpp')
 sourceCpp('QRObj.cpp')
 
 # Main function
-CAViaR <- function(y,
-                   model,
-                   alpha,
+CAViaR <- function(y = y,
+                   model = 'SAV',
+                   alpha = 0.05,
                    G = 5,
                    control = list(max_iter_out = 500,
                                   max_iter_in = 500,
@@ -19,9 +21,18 @@ CAViaR <- function(y,
                                   trace = 0),
                    lower_brent = -2,
                    upper_brent = 2,
-                   seed = seed){
+                   seed = 123){
   
-  # Correct model identification
+  # Parameters:
+  # y: time series
+  # model: character label for specification (SAV, Asymmetric, Adaptive, InGARCH)
+  # alpha: quantile level 
+  # G: regularization parameter for Adaptive model
+  # control: list of control parameters for optimisation routine
+  # lower_brent, upper_brent: lower and upper bounds for Brent method (only for )
+  # seed: seed for reproducibility ()
+  
+  # Model identification
   models <- c('SAV', 'Asymmetric', 'Adaptive', 'InGARCH')
   id_model <- which(models %in% model)
   
@@ -356,12 +367,6 @@ CAViaR <- function(y,
   
   return(ret)
 }
-
-
-
-
-
-
 
 # gr <- function(par){
 #   numDeriv::grad(function(x) QRObj(Quantile = CAViaR_loop(beta = x,
