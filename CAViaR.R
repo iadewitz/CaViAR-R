@@ -1,13 +1,12 @@
-setwd(dirname(rstudioapi::getSourceEditorContext()$path)) # Script location as wd
-
 library(RcppArmadillo)
 library(Rcpp)
 library(numDeriv)
-sourceCpp('SAVLoop.cpp')
-sourceCpp('AsymmetricLoop.cpp')
-sourceCpp('AdaptiveLoop.cpp')
-sourceCpp('InGARCHLoop.cpp')
-sourceCpp('QRObj.cpp')
+mainDir <- "C:/Users/iadev/Documents/GitHub/CaViAR-R/"
+sourceCpp(paste(mainDir, "SAVLoop.cpp", sep = ""))
+sourceCpp(paste(mainDir, 'AsymmetricLoop.cpp', sep = ''))
+sourceCpp(paste(mainDir, 'AdaptiveLoop.cpp', sep = ''))
+sourceCpp(paste(mainDir, 'InGARCHLoop.cpp', sep = ''))
+sourceCpp(paste(mainDir, 'QRObj.cpp', sep = ''))
 
 # Main function
 CAViaR <- function(y = y,

@@ -9,7 +9,7 @@ NumericVector CAViaR_SAV(NumericVector beta, NumericVector data, double empirica
   int data_length = data.length();
   NumericVector Quantile(data_length);
 
-  // Initialize output variables */
+  // Initialize output variables 
   Quantile[0] = empiricalQuantile;
   
   for(i = 1; i < data_length; i++)
